@@ -49,7 +49,6 @@ asset_t *asset_new_bg(window_t *win)
     return (bg);
 }
 
-#include <stdio.h>
 void	asset_update_position(asset_t *this)
 {
 	sfVector2f	curr_pos = sfSprite_getPosition(this->sp);
@@ -58,8 +57,6 @@ void	asset_update_position(asset_t *this)
 	this->hb.left = curr_pos.x;
 	this->hb.right = curr_pos.x + this->size.width;
 	this->hb.down = curr_pos.y + this->size.height;
-	printf("{top: %d, right: %d, left: %d, down: %d}\n", this->hb.top,
-		this->hb.right, this->hb.left, this->hb.down);
 }
 
 asset_t *asset_destroy(asset_t *this)

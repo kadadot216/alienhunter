@@ -24,6 +24,7 @@ char    *my_strcat(char *dest, char *const src);
 void	my_revstr(char *str);
 char	*my_itoa(int nb, char *buf);
 void    my_memset(char *str, char c, int size);
+void	my_putstr(char *const str);
 
 
 #define WIN_TITLE   ("My_hunter")
@@ -115,13 +116,15 @@ void    alien_set_position(asset_t *, window_t *);
 #define SCOPE_PATH      ("./assets/scope.png")
 
 typedef struct  s_player {
-    int lives;
-    int score;
+    int *lives;
+    int *score;
     asset_t *scope;
 }   player_t;
 
 asset_t *asset_new_scope(void);
 player_t	*player_update_mouse_pos(player_t *player, sfMouseMoveEvent *evt);
 player_t    *player_init(int lives, col_t *col);
+int	in_range(hitbox_t *scope, hitbox_t *alien);
+void	player_hit(player_t *player, asset_t *alien);
 
 #endif

@@ -10,6 +10,9 @@ void	poll_events(window_t *win, player_t *player, col_t *col)
 			sfRenderWindow_close(win->render);
 		else if (win->event.type == sfEvtMouseMoved)
 			player = player_update_mouse_pos(player, &win->event.mouseMove);
+		else if (win->event.type == sfEvtMouseButtonPressed) {
+			player_hit(player, col->assets[ALIEN]);
+		}
 	}
 }
 
@@ -72,11 +75,13 @@ int main(int ac, char **av)
 
     srand(time(NULL));
     alien_set_position(col->assets[ALIEN], win);
-    while (sfRenderWindow_isOpen(win->render)) {
+    while (sfRenderWindow_isOpen(win->render) && *player->lives > 0) {
 	    poll_events(win, player, col);
+	    asset_update_position(col->assets[ALIEN]);
 	    dispatch(win, col);
     }
     win = window_destroy(win);
     col = destroy_assets(col);
+    my_putstr("Game Over :)\n");
     return (0);
 }

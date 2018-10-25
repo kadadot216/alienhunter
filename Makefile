@@ -16,6 +16,8 @@ SRC		=	main.c		\
 			my_strcat.c 	\
 			player.c 	\
 			text.c 	\
+			my_putstr.c 	\
+			game.c 	\
 			alien.c
 
 OBJ		=	$(SRC:.c=.o)

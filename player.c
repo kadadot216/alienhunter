@@ -29,8 +29,9 @@ player_t    *player_init(int lives, col_t *col)
 {
     player_t    *new = malloc(sizeof(*new));
 
-    new->lives = lives;
-    new->score = 0;
+    new->lives = &col->texts[LIVES]->data;
+    *new->lives = 3;
+    new->score = &col->texts[SCORE]->data;
     new->scope = col->assets[SCOPE];
     return (new);
 }
