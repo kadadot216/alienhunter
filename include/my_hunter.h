@@ -54,11 +54,18 @@ window_t    *window_destroy(window_t *this);
 #define PAUSE_W     (256)
 #define PAUSE_H     (256)
 
+typedef  struct	s_hitbox {
+	int	top;
+	int	right;
+	int	down;
+	int	left;
+}	hitbox_t;
+
 typedef  struct  s_asset {
     sfTexture   *tex;
     sfSprite    *sp;
     sfIntRect    size;
-    sfVector2f  pos;
+    hitbox_t	hb; 
 }   asset_t;
 
 enum    asset_id{
@@ -97,6 +104,7 @@ asset_t *asset_new_alien(void);
 asset_t *asset_new_pause(void);
 asset_t *asset_new_bg(window_t *win);
 asset_t *asset_destroy(asset_t *this);
+void	asset_update_position(asset_t *this);
 
 void    alien_set_position(asset_t *, window_t *);
 

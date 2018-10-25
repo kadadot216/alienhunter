@@ -18,8 +18,10 @@ asset_t *asset_new(int width, int height, char *const path, int full)
     new->size.width = width;
     new->size.top = 0;
     new->size.left = 0;
-    new->pos.x = 0;
-    new->pos.y = 0;
+    new->hb.top = 0;
+    new->hb.left = 0;
+    new->hb.right = 0;
+    new->hb.down = 0;
     if (full)
         new->tex = sfTexture_createFromFile(path, NULL);
     else
@@ -47,14 +49,29 @@ asset_t *asset_new_bg(window_t *win)
     return (bg);
 }
 
+#include <stdio.h>
+void	asset_update_position(asset_t *this)
+{
+	sfVector2f	curr_pos = sfSprite_getPosition(this->sp);
+
+	this->hb.top = curr_pos.y;
+	this->hb.left = curr_pos.x;
+	this->hb.right = curr_pos.x + this->size.width;
+	this->hb.down = curr_pos.y + this->size.height;
+	printf("{top: %d, right: %d, left: %d, down: %d}\n", this->hb.top,
+		this->hb.right, this->hb.left, this->hb.down);
+}
+
 asset_t *asset_destroy(asset_t *this)
 {
     this->size.top = 0;
     this->size.left = 0;
     this->size.height = 0;
     this->size.width = 0;
-    this->pos.x = 0;
-    this->pos.y = 0;
+    this->hb.top = 0;
+    this->hb.left = 0;
+    this->hb.right = 0;
+    this->hb.down = 0;
     sfSprite_destroy(this->sp);
     this->sp = NULL;
     sfTexture_destroy(this->tex);

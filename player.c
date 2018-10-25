@@ -20,8 +20,8 @@ player_t	*player_update_mouse_pos(player_t *player, sfMouseMoveEvent *evt)
 {
     sfVector2f	position = { evt->x, evt->y };
 
-    printf("x: %d, y: %d\n", evt->x, evt->y);
     sfSprite_setPosition(player->scope->sp, position);
+    asset_update_position(player->scope);
     return (player);
 }
 
@@ -34,4 +34,3 @@ player_t    *player_init(int lives, col_t *col)
     new->scope = col->assets[SCOPE];
     return (new);
 }
-    
