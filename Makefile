@@ -1,30 +1,27 @@
-##
-## EPITECH PROJECT, 2018
-## Makefile
-## File description:
-## my_hunter
-##
-
-SRC		=	main.c		\
-			window.c	\
-			./lib/my/my_strdup.c	\
-			assets.c		\
-			rand_min_max.c		\
-			my_itoa.c		\
-			my_revstr.c		\
-			my_memset.c 	\
-			my_strcat.c 	\
-			player.c 	\
-			text.c 	\
-			my_putstr.c 	\
-			game.c 	\
-			alien.c
+SRC		=	./src/main.c			\
+			./src/window.c			\
+			./src/my_strdup.c		\
+			./src/my_strlen.c		\
+			./src/assets.c			\
+			./src/rand_min_max.c		\
+			./src/my_itoa.c			\
+			./src/my_revstr.c		\
+			./src/my_memset.c 		\
+			./src/my_strcat.c 		\
+			./src/player.c 			\
+			./src/text.c 			\
+			./src/my_putstr.c 		\
+			./src/timer.c 			\
+			./src/col.c 			\
+			./src/events.c 			\
+			./src/game.c 			\
+			./src/alien.c
 
 OBJ		=	$(SRC:.c=.o)
 
 CFLAGS		=	-Iinclude
 
-NAME		=	my_hunter
+NAME		=	hunter
 
 all:		$(NAME)
 
